@@ -1,0 +1,10 @@
+.Branch {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px;
+}
