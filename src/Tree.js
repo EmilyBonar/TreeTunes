@@ -1,5 +1,6 @@
 import React from "react";
 import Branch from "./Branch";
+import Explicit from ".Explicit"
 import "./Tree.css";
 
 // Sample ID: 5xif4sULGuWiZDVCcjNXxR
@@ -20,8 +21,13 @@ class Tree extends React.Component {
 								<Branch
 									title={song.track.name}
 									artist={song.track.artists[0].name}
-									explicit={song.track.explicit}
 								/>
+								<Explicit
+								explicit={song.track.explicit[0]}
+								if exlicit==True{
+									.Branch background-color=red;
+								}
+									/>
 							</li>
 						);
 					})}
