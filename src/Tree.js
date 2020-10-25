@@ -6,10 +6,16 @@ const branches = [<Branch value={"Song"} />, <Branch value={"Song"} />];
 class Tree extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = { playlist: props.value };
 	}
 	render() {
-		return <div className="Tree">{branches}</div>;
+		return (
+			<div className="Tree">
+				{this.state.playlist.forEach((element) => {
+					return <p>test</p>;
+				})}
+			</div>
+		);
 	}
 }
 
