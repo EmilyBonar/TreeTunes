@@ -1,21 +1,23 @@
-import Branch from "./Branch";
 import React from "react";
 
-const branches = [<Branch value={"Song"} />, <Branch value={"Song"} />];
-
+// Sample ID: 5xif4sULGuWiZDVCcjNXxR
 class Tree extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { playlist: props.value };
-	}
 	render() {
-		return (
-			<div className="Tree">
-				{this.state.playlist.forEach((element) => {
-					return <p>test</p>;
-				})}
-			</div>
-		);
+		console.log("Rendering Tree...");
+		console.log(this.props.playlist);
+		if (this.props.playlist) {
+			return (
+				<div className="Tree">
+					{this.props.playlist.map((song) => {
+						console.log(song);
+						console.log(song.track.name);
+						return <p>{song.track.name}</p>;
+					})}
+				</div>
+			);
+		} else {
+			return <p>Nothing found.</p>;
+		}
 	}
 }
 

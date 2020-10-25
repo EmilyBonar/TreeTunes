@@ -1,4 +1,5 @@
 import React from "react";
+import "./Branch.css";
 
 class Branch extends React.Component {
 	constructor(props) {
