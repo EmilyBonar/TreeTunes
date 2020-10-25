@@ -1,4 +1,6 @@
 import React from "react";
+import Branch from "./Branch";
+import "./Tree.css";
 
 // Sample ID: 5xif4sULGuWiZDVCcjNXxR
 class Tree extends React.Component {
@@ -7,13 +9,17 @@ class Tree extends React.Component {
 		console.log(this.props.playlist);
 		if (this.props.playlist) {
 			return (
-				<div className="Tree">
+				<ul className="Tree">
 					{this.props.playlist.map((song) => {
 						console.log(song);
 						console.log(song.track.name);
-						return <p>{song.track.name}</p>;
+						return (
+							<li>
+								<Branch title={song.track.name} />
+							</li>
+						);
 					})}
-				</div>
+				</ul>
 			);
 		} else {
 			return <p>Nothing found.</p>;
