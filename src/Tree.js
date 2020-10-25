@@ -7,15 +7,19 @@ class Tree extends React.Component {
 	render() {
 		console.log("Rendering Tree...");
 		console.log(this.props.playlist);
+		//
 		if (this.props.playlist) {
 			return (
 				<ul className="Tree">
 					{this.props.playlist.map((song) => {
 						console.log(song);
-						console.log(song.track.name);
+						console.log(song.track.artists[0].name);
 						return (
 							<li>
-								<Branch title={song.track.name} />
+								<Branch
+									title={song.track.name}
+									artist={song.track.artists[0].name}
+								/>
 							</li>
 						);
 					})}
