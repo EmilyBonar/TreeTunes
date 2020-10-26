@@ -9,7 +9,6 @@ class Branch extends React.Component {
 			artist: this.props.artist,
 			length: this.props.length,
 			danceability: this.props.danceability,
-			explicit: this.props.explicit,
 		};
 	}
 
