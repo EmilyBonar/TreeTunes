@@ -25,7 +25,7 @@ class Branch extends React.Component {
 				style={{
 					backgroundColor: `rgb(${
 						255 * Number.parseFloat(this.state.danceability)
-					}, 0, 255)`,
+					}, 0, 0)`,
 					height: `${this.state.duration / 3000}px`,
 					width: `${this.state.duration / 3000}px`,
 				}}

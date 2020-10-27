@@ -10,18 +10,24 @@ class Tree extends React.Component {
 		//
 		if (this.props.playlist && this.props.features) {
 			return (
-				<ul className="Tree">
-					{this.props.playlist.map((song) => {
-						const songFeatures = this.props.features.find(
-							(element) => element.id === song.track.id,
-						);
-						return (
-							<li>
-								<Branch song={song.track} features={songFeatures} />
-							</li>
-						);
-					})}
-				</ul>
+				<>
+					<h1>
+						Size is proportional to song duration, darkness is proportional to
+						danceability
+					</h1>
+					<ul className="Tree">
+						{this.props.playlist.map((song) => {
+							const songFeatures = this.props.features.find(
+								(element) => element.id === song.track.id,
+							);
+							return (
+								<li>
+									<Branch song={song.track} features={songFeatures} />
+								</li>
+							);
+						})}
+					</ul>
+				</>
 			);
 		} else {
 			return <p>Nothing found.</p>;

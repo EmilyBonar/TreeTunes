@@ -14,3 +14,9 @@ li {
 	display: flex;
 	justify-content: center;
 }
+
+h1 {
+	background-color: #FEDC53;
+	padding: 10px;
+	border-radius: 10px;
+}
