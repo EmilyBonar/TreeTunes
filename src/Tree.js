@@ -12,12 +12,9 @@ class Tree extends React.Component {
 			return (
 				<ul className="Tree">
 					{this.props.playlist.map((song) => {
-						console.log(song);
 						const songFeatures = this.props.features.find(
 							(element) => element.id === song.track.id,
 						);
-						console.log(songFeatures);
-						//console.log(song.track.artists[0].name);
 						return (
 							<li>
 								<Branch song={song.track} features={songFeatures} />
