@@ -15,7 +15,9 @@ class App extends React.Component {
 		e.preventDefault();
 		const url = document.querySelector(".playlist-input").value.split("/");
 		const id = url[url.indexOf("playlist") + 1].split("?")[0];
-		fetch(`./.netlify/functions/getSpotifyData?id=${id}`)
+		fetch(
+			`http://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
+		)
 			.then((response) => {
 				return response.json();
 			})
@@ -36,7 +38,7 @@ class App extends React.Component {
 			return (
 				<>
 					<a href={`${window.location.href}`} className="home">
-						<p>f</p>
+						{" "}
 					</a>
 					<div className="App">{this.state.tree}</div>
 				</>
@@ -54,7 +56,6 @@ class App extends React.Component {
 							onClick={(e) => {
 								this.getPlaylist(e);
 								this.setState({ playlistEntered: true });
-								//console.log(playlist);
 							}}
 						>
 							Enter

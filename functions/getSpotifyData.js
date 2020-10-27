@@ -42,6 +42,11 @@ exports.handler = async (event, context) => {
 	return {
 		statusCode: 200,
 		body: JSON.stringify({ playlist: playlist, features: features }),
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Headers": "Content-Type",
+			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+		},
 	};
 };
 
