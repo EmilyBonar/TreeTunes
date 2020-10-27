@@ -3,25 +3,26 @@ var fetch = require("node-fetch");
 var SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
 
-function getApiUrl(id) {
-	return `https://api.spotify.com/v1/playlists/${id}/tracks?market=US`;
-}
-
 exports.handler = async (event, context) => {
 	let id = event.queryStringParameters.id;
 	//id = "5xif4sULGuWiZDVCcjNXxR";
-	//let result;
+	let headers;
 
 	var spotifyApi = new SpotifyWebApi({
 		clientId: process.env.ClientID,
 		clientSecret: process.env.ClientSecret,
 	});
-	let result = await spotifyApi
+	let playlist = await spotifyApi
 		.clientCredentialsGrant()
 		.then(
 			function (data) {
 				// Save the access token so that it's used in future calls
 				spotifyApi.setAccessToken(data.body["access_token"]);
+				headers = {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${spotifyApi.getAccessToken()}`,
+				};
 			},
 			function (err) {
 				console.log(
@@ -31,24 +32,38 @@ exports.handler = async (event, context) => {
 			},
 		)
 		.then(() => {
-			return getPlaylist(spotifyApi, id);
+			return getPlaylist(headers, id);
 		});
+	let ids = [];
+	playlist.map((song) => {
+		ids.push(song.track.id);
+	});
+	let features = await getAudioFeatures(headers, ids);
 	return {
 		statusCode: 200,
-		body: JSON.stringify(result),
+		body: JSON.stringify({ playlist: playlist, features: features }),
 	};
 };
 
-function getPlaylist(spotifyApi, id) {
-	const headers = {
-		Accept: "application/json",
-		"Content-Type": "application/json",
-		Authorization: `Bearer ${spotifyApi.getAccessToken()}`,
-	};
-	return fetch(getApiUrl(id), { headers: headers })
+function getPlaylist(headers, id) {
+	return fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?market=US`, {
+		headers: headers,
+	})
 		.then((response) => response.json())
 		.then((jsonData) => {
 			result = jsonData.items;
+			return result;
+		});
+}
+
+function getAudioFeatures(headers, ids) {
+	const id = ids.join("%2C");
+	return fetch(`https://api.spotify.com/v1/audio-features?ids=${id}`, {
+		headers: headers,
+	})
+		.then((response) => response.json())
+		.then((jsonData) => {
+			result = jsonData.audio_features;
 			return result;
 		});
 }

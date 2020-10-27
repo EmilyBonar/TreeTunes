@@ -6,7 +6,7 @@ import "./Tree.css";
 class Tree extends React.Component {
 	render() {
 		console.log("Rendering Tree...");
-		console.log(this.props.playlist);
+		//console.log(this.props.playlist);
 		//
 		if (this.props.playlist) {
 			return (

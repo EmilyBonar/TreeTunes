@@ -21,7 +21,7 @@ class App extends React.Component {
 			})
 			.then((data) => {
 				console.log(data); // --> this correctly returns an array
-				const newTree = <Tree playlist={data} />;
+				const newTree = <Tree playlist={data.playlist} />;
 				this.setState({ tree: newTree });
 			})
 			.catch((error) => {
