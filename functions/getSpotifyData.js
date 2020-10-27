@@ -48,7 +48,7 @@ function getPlaylist(spotifyApi, id) {
 	return fetch(getApiUrl(id), { headers: headers })
 		.then((response) => response.json())
 		.then((jsonData) => {
-			result = jsonData;
+			result = jsonData.items;
 			return result;
 		});
 }
