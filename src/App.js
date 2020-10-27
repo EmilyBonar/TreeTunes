@@ -16,7 +16,7 @@ class App extends React.Component {
 		const url = document.querySelector(".playlist-input").value.split("/");
 		const id = url[url.indexOf("playlist") + 1].split("?")[0];
 		fetch(
-			`http://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
+			`https://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
 		)
 			.then((response) => {
 				return response.json();
