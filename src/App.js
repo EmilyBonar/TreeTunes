@@ -15,13 +15,15 @@ class App extends React.Component {
 		e.preventDefault();
 		const url = document.querySelector(".playlist-input").value.split("/");
 		const id = url[url.indexOf("playlist") + 1].split("?")[0];
-		fetch(
-			`https://us-central1-centering-star-293515.cloudfunctions.net/getSpotifyData/${id}`,
-		)
-			.then((response) => response.json())
+		fetch(`./functions/getSpotifyData?id=${id}`)
+			.then((response) => {
+				//console.log(response);
+				//return response.json();
+				return response.json();
+			})
 			.then((data) => {
-				// console.log(data.items); --> this correctly returns an array
-				const newTree = <Tree playlist={data.items} />;
+				console.log(data); // --> this correctly returns an array
+				const newTree = <Tree playlist={data} />;
 				this.setState({ tree: newTree });
 			})
 			.catch((error) => {
