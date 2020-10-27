@@ -4,11 +4,12 @@ import "./Branch.css";
 class Branch extends React.Component {
 	constructor(props) {
 		super(props);
+		let song = this.props.song;
 		this.state = {
-			title: this.props.title,
-			artist: this.props.artist,
-			length: this.props.length,
-			danceability: this.props.danceability,
+			title: song.name,
+			artist: song.artists[0].name,
+			//length: this.props.length,
+			//danceability: this.props.danceability,
 		};
 	}
 

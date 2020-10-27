@@ -12,13 +12,13 @@ class Tree extends React.Component {
 			return (
 				<ul className="Tree">
 					{this.props.playlist.map((song) => {
-						console.log(song);
-						console.log(song.track.artists[0].name);
+						//console.log(song);
+						//console.log(song.track.artists[0].name);
 						return (
 							<li>
 								<Branch
-									title={song.track.name}
-									artist={song.track.artists[0].name}
+									song={song.track}
+									//details={song.track.artists[0].name}
 								/>
 							</li>
 						);

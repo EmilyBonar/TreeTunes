@@ -20,7 +20,7 @@ class App extends React.Component {
 				return response.json();
 			})
 			.then((data) => {
-				//console.log(data); // --> this correctly returns an array
+				console.log(data); // --> this correctly returns an array
 				const newTree = <Tree playlist={data} />;
 				this.setState({ tree: newTree });
 			})
