@@ -5,20 +5,24 @@ class Branch extends React.Component {
 	constructor(props) {
 		super(props);
 		let song = this.props.song;
+		let features = this.props.features;
 		this.state = {
 			title: song.name,
 			artist: song.artists[0].name,
-			//length: this.props.length,
-			//danceability: this.props.danceability,
+			duration: song.duration_ms,
+			danceability: features.danceability,
 		};
 	}
 
 	render() {
 		return (
-			<div className="Branch">
-				<h3>{this.state.title}</h3>
-				<p>{this.state.artist}</p>
-			</div>
+			<div
+				className="Branch"
+				data-title={this.state.title}
+				data-artist={this.state.artist}
+				data-duration={this.state.duration}
+				data-danceability={this.state.danceability}
+			></div>
 		);
 	}
 }
