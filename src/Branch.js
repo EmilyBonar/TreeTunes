@@ -22,6 +22,13 @@ class Branch extends React.Component {
 				data-artist={this.state.artist}
 				data-duration={this.state.duration}
 				data-danceability={this.state.danceability}
+				style={{
+					backgroundColor: `rgb(${
+						255 * Number.parseFloat(this.state.danceability)
+					}, 0, 255)`,
+					height: `${this.state.duration / 3000}px`,
+					width: `${this.state.duration / 3000}px`,
+				}}
 			></div>
 		);
 	}

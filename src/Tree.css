@@ -7,4 +7,10 @@ ul {
 	height: min-content;
 	background: none;
 	justify-content: center;
+	padding: 40px;
+}
+
+li {
+	display: flex;
+	justify-content: center;
 }

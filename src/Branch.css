@@ -7,26 +7,21 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	justify-self: center;
 	margin: 10px;
 	padding: 5px;
-	background-color: white;
-	opacity: 0.8;
-}
-
-.Branch:hover {
-	opacity: 1;
-	transition: all 0.1s linear 0ms;
 }
 
 .Branch:hover::before {
-	content: attr(data-title) "\00000a"attr(data-artist);
+	content: attr(data-title) "\00000a\00000a"attr(data-artist);
 	white-space: pre-wrap;
 	background: white;
 	position: relative;
 	bottom: 70px;
 	padding: 10px;
 	border-radius: 10px;
-	width: 100px;
+	width: 15ch;
+	opacity: 1;
 	z-index: 2;
 }
 

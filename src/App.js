@@ -33,7 +33,14 @@ class App extends React.Component {
 
 	render() {
 		if (this.state.playlistEntered) {
-			return <div className="App">{this.state.tree}</div>;
+			return (
+				<>
+					<a href={`${window.location.href}`} className="home">
+						<p>f</p>
+					</a>
+					<div className="App">{this.state.tree}</div>
+				</>
+			);
 		} else {
 			return (
 				<div className="App">
