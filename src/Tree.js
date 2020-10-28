@@ -12,7 +12,7 @@ class Tree extends React.Component {
 			return (
 				<>
 					<h1>
-						Size is proportional to song duration, darkness is proportional to
+						Size is proportional to song duration, lightness is proportional to
 						danceability
 					</h1>
 					<ul className="Tree">
