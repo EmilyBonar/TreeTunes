@@ -11,12 +11,15 @@ class Branch extends React.Component {
 			artist: song.artists[0].name,
 			duration: song.duration_ms,
 			danceability: features.danceability,
+			id: song.id,
 		};
 	}
 
 	render() {
 		return (
-			<div
+			<a
+				href={`https://open.spotify.com/track/${this.state.id}`}
+				target="_blank"
 				className="Branch"
 				data-title={this.state.title}
 				data-artist={this.state.artist}
@@ -29,7 +32,9 @@ class Branch extends React.Component {
 					height: `${this.state.duration / 3000}px`,
 					width: `${this.state.duration / 3000}px`,
 				}}
-			></div>
+			>
+				{" "}
+			</a>
 		);
 	}
 }
