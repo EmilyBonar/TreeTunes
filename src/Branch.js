@@ -19,6 +19,7 @@ class Branch extends React.Component {
 		return (
 			<a
 				href={`https://open.spotify.com/track/${this.state.id}`}
+				rel="noreferrer"
 				target="_blank"
 				className="Branch"
 				data-title={this.state.title}

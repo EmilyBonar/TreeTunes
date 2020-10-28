@@ -1,9 +1,13 @@
-#root {
+body {
 	background-image: url(./c-d-x-PDX_a_82obo-unsplash.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
 	height: 100vh;
+}
+
+#root {
+	height: 100%;
 }
 
 .App {
@@ -29,6 +33,18 @@
 	font-size: xx-large;
 	margin: 10px;
 }
+
+@media screen and (max-width: 600px) {
+	body {
+		height: 100%;
+	}
+
+	.playlist-input {
+		font-size: large;
+		width: 95vw;
+	}
+}
+
 .playlist-submit {
 	width: 200px;
 	height: 100px;
