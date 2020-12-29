@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Chart(props) {
 	const [feature, setFeature] = useState("danceability");
@@ -17,7 +17,8 @@ export default function Chart(props) {
 		"instrumentalness",
 		"liveness",
 		"speechiness",
-		"positivity",
+		"valence",
+		"energy",
 	];
 	return (
 		<div>
@@ -37,7 +38,7 @@ export default function Chart(props) {
 					);
 				})}
 			</select>
-			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-96 h-screen mt-4 lg:absolute lg:bottom-0 lg:w-5/6">
+			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-4/5 h-screen mt-4 lg:absolute lg:bottom-0 lg:w-5/6">
 				<div className="lg:h-full border-gray-600 flex lg:flex-col flex-row-reverse border-b-2 lg:border-b-0 lg:border-r-2 text-right">
 					<p className="flex-grow relative top-0">100%</p>
 					<p className="flex-grow">80%</p>
@@ -52,43 +53,29 @@ export default function Chart(props) {
 	);
 }
 
-function ChartElement(props) {
-	const song = props.song;
-	const vertical = props.vertical;
-	const feature = props.feature;
-	let size;
-	switch (feature) {
-		case "danceability":
-			size = song.features.danceability * 100;
-			break;
-		case "acousticness":
-			size = song.features.acousticness * 100;
-			break;
-		case "instrumentalness":
-			size = song.features.instrumentalness * 100;
-			break;
-		case "liveness":
-			size = song.features.liveness * 100;
-			break;
-		case "speechiness":
-			size = song.features.speechiness * 100;
-			break;
-		case "positivity":
-			size = song.features.valence * 100;
-			break;
-		default:
-			break;
+class ChartElement extends React.Component {
+	get value() {
+		return this.props.song.features[this.props.feature];
 	}
-	return (
-		<div
-			className="bg-blue-400 w-5 flex-grow hover:bg-blue-600 group"
-			style={vertical ? { height: size + "%" } : { width: size + "%" }}
-		>
-			<p className="relative bottom-10 w-max hidden group-hover:block group-hover:bg-white opacity-80 p-2">
-				{song.track.name}
-			</p>
-		</div>
-	);
+	render() {
+		const vertical = this.props.vertical;
+		const features = this.props.song.features;
+		const feature = this.props.feature;
+		return (
+			<div
+				className="bg-blue-400 w-5 flex-grow hover:bg-blue-600 group"
+				style={
+					vertical
+						? { height: features[feature] * 100 + "%" }
+						: { width: features[feature] * 100 + "%" }
+				}
+			>
+				<p className="relative bottom-10 w-max hidden group-hover:block group-hover:bg-white opacity-80 p-2">
+					{this.props.song.track.name}
+				</p>
+			</div>
+		);
+	}
 }
 
 function useWindowSize() {
