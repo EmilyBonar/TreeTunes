@@ -64,7 +64,9 @@ function Results() {
 	console.log(playlist);
 	return (
 		<>
-			<Link to="/">Try another playlist</Link>
+			<Link to="/" className="p-2">
+				←Try another playlist
+			</Link>
 			<Chart playlist={playlist} />
 		</>
 	);
@@ -78,16 +80,10 @@ async function getPlaylist(url) {
 			return response.json();
 		})
 		.then((data) => {
-			//console.log(data); // --> this correctly returns an array
-			// const newTree = (
-			// 	<Tree playlist={data.playlist} features={data.features} />
-			// );
-			// this.setState({ tree: newTree });
 			return data;
 		})
 		.catch((error) => {
 			console.error(error);
 		});
-	//console.log(result);
 	return await result;
 }

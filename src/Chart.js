@@ -23,7 +23,7 @@ export default function Chart(props) {
 		"energy",
 	];
 	return (
-		<div>
+		<div className="mt-4">
 			<select
 				onChange={(e) => {
 					setFeature(e.target.value);
