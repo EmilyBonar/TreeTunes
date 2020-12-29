@@ -7,7 +7,13 @@ module.exports = {
 		"public/**/*.html",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			height: {
+				"h-screen-1/2": "50vh",
+				"h-screen-3/4": "75vh",
+				"h-screen-1/4": "25vh",
+			},
+		},
 	},
 	variants: {},
 	plugins: [],
