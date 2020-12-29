@@ -20,9 +20,11 @@ export default function App() {
 
 function Home() {
 	return (
-		<div>
-			<input></input>
-			<Link to="/results">Results</Link>
+		<div className="flex fixed top-1/2 w-full">
+			<input className="flex-grow rounded mx-2 p-4 text-xl"></input>
+			<Link to="/results" className="bg-white mx-2 p-4 text-xl">
+				Results
+			</Link>
 		</div>
 	);
 }
