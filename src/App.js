@@ -7,6 +7,7 @@ import {
 	useParams,
 } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import Chart from "./Chart.js";
 
 export default function App() {
 	return (
@@ -46,7 +47,7 @@ function Home() {
 }
 
 function Results() {
-	const [playlist, setPlaylist] = useState({ playlist: [] });
+	const [playlist, setPlaylist] = useState([]);
 	let { url } = useParams();
 	useEffect(() => {
 		getPlaylist(url).then((data) => {
@@ -64,7 +65,7 @@ function Results() {
 	return (
 		<>
 			<Link to="/">Try another playlist</Link>
-			<div></div>
+			<Chart playlist={playlist} />
 		</>
 	);
 }
