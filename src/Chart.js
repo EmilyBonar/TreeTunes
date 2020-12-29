@@ -8,9 +8,11 @@ export default function Chart(props) {
 	if (size.width > 1024) {
 		vertical = true;
 	}
-	let elementArray = props.playlist.map((song) => (
-		<ChartElement song={song} feature={feature} vertical={vertical} />
-	));
+	let elementArray = props.playlist
+		.sort((a, b) => a.features[feature] - b.features[feature])
+		.map((song) => (
+			<ChartElement song={song} feature={feature} vertical={vertical} />
+		));
 	let features = [
 		"danceability",
 		"acousticness",
