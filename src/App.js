@@ -20,9 +20,12 @@ export default function App() {
 
 function Home() {
 	return (
-		<div className="flex fixed top-1/2 w-full">
-			<input className="flex-grow rounded mx-2 p-4 text-xl"></input>
-			<Link to="/results" className="bg-white mx-2 p-4 text-xl">
+		<div className="flex fixed top-1/2 w-full flex-wrap justify-center">
+			<input
+				className="flex-grow rounded m-2 p-4 text-2xl"
+				placeholder="Enter a Spotify playlist URL"
+			></input>
+			<Link to="/results" className="bg-white m-2 p-4 text-xl rounded">
 				Results
 			</Link>
 		</div>
