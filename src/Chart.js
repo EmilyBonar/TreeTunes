@@ -30,7 +30,7 @@ export default function Chart(props) {
 					);
 				})}
 			</select>
-			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-64 h-screen-3/4 mt-4">
+			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-96 h-screen mt-4 lg:absolute lg:bottom-0 lg:w-5/6">
 				{elementArray}
 			</div>
 		</div>
@@ -57,9 +57,13 @@ function ChartElement(props) {
 	}
 	return (
 		<div
-			className="bg-blue-400 w-5 flex-grow"
+			className="bg-blue-400 w-5 flex-grow hover:bg-blue-600 group"
 			style={vertical ? { height: size + "%" } : { width: size + "%" }}
-		></div>
+		>
+			<p className="relative w-max hidden group-hover:block group-hover:bg-white opacity-80 p-2">
+				{song.track.name}
+			</p>
+		</div>
 	);
 }
 
