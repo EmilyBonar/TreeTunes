@@ -40,7 +40,7 @@ export default function Chart(props) {
 					);
 				})}
 			</select>
-			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-4/5 h-screen mt-4 lg:absolute lg:bottom-0 lg:w-5/6">
+			<div className="flex lg:items-end lg:flex-row flex-col lg:divide-x-2 divide-y-2 lg:h-4/5 h-screen mt-4 lg:absolute lg:bottom-0 lg:w-full lg:mr-24">
 				<div className="lg:h-full border-gray-600 flex lg:flex-col flex-row-reverse border-b-2 lg:border-b-0 lg:border-r-2 text-right">
 					<p className="flex-grow relative top-0">100%</p>
 					<p className="flex-grow">80%</p>
@@ -50,6 +50,7 @@ export default function Chart(props) {
 					<p className="relative bottom-0">0%</p>
 				</div>
 				{elementArray}
+				<div className="w-24"></div>
 			</div>
 		</div>
 	);
@@ -64,18 +65,21 @@ class ChartElement extends React.Component {
 		const features = this.props.song.features;
 		const feature = this.props.feature;
 		return (
-			<div
+			<a
 				className="bg-blue-400 w-5 flex-grow hover:bg-blue-600 group"
 				style={
 					vertical
 						? { height: features[feature] * 100 + "%" }
 						: { width: features[feature] * 100 + "%" }
 				}
+				href={this.props.song.track.external_urls.spotify}
+				target="_blank"
+				rel="noopener noreferrer"
 			>
-				<p className="relative bottom-10 w-max hidden group-hover:block group-hover:bg-white opacity-80 p-2">
+				<p className="relative left-3/4 lg:-left-full lg:bottom-20 w-32 hidden group-hover:block group-hover:bg-white opacity-80 p-2">
 					{this.props.song.track.name}
 				</p>
-			</div>
+			</a>
 		);
 	}
 }

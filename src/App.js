@@ -35,11 +35,7 @@ function Home() {
 				placeholder="Enter a Spotify playlist URL"
 				onInput={(e) => setUrl(e.target.value.split("/"))}
 			></input>
-			<Link
-				to={`/results/${url}`}
-				className="bg-white m-2 p-4 text-xl rounded"
-				//onClick={getPlaylist}
-			>
+			<Link to={`/results/${url}`} className="bg-white m-2 p-4 text-xl rounded">
 				Results
 			</Link>
 		</div>
@@ -61,7 +57,6 @@ function Results() {
 			setPlaylist(playlist);
 		});
 	}, [url]);
-	console.log(playlist);
 	return (
 		<>
 			<Link to="/" className="p-2">
