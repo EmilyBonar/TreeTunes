@@ -70,7 +70,9 @@ function Results() {
 async function getPlaylist(url) {
 	url = url.split(",");
 	const id = url[url.indexOf("playlist") + 1].split("?")[0];
-	let result = await fetch(`../.netlify/functions/getSpotifyData?id=${id}`)
+	let result = await fetch(
+		`https://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
+	)
 		.then((response) => {
 			return response.json();
 		})
