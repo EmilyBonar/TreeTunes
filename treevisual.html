@@ -1,0 +1,25 @@
+<div id="container"></div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"> </script>
+<script>
+var paper = Raphael("container", 1000, 800);
+var trunk = paper.rect(200, 300, 100, 300).attr({
+fill: "#824727",
+stroke: "#000",
+"stroke-width": 1
+});
+var leaf = paper.circle((Math.floor(Math.random() * 400) + 100),(Math.floor(Math.random() * 300) + 100), 50).attr({
+fill: "#b2ffa8",
+stroke: "#000",
+"stroke-width": 1
+});
+leaf = paper.circle,(Math.floor(Math.random() * 300) + 200),70).attr({
+fill: "#128a03",
+stroke: "#000",
+"stroke-width": 1
+});
+leaf = paper.circle((Math.floor(Math.random() * 350) + 150),(Math.floor(Math.random() * 300) + 200),50).attr({
+fill: "#5d8f57",
+stroke: "#000",
+"stroke-width": 1
+});
+</script>

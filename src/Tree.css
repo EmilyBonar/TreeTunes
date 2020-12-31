@@ -1,0 +1,22 @@
+ul {
+	list-style: none;
+	display: flex;
+	flex-flow: row wrap;
+	height: -webkit-min-content;
+	height: -moz-min-content;
+	height: min-content;
+	background: none;
+	justify-content: center;
+	padding: 40px;
+}
+
+li {
+	display: flex;
+	justify-content: center;
+}
+
+h1 {
+	background-color: #FEDC53;
+	padding: 10px;
+	border-radius: 10px;
+}
