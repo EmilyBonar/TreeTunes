@@ -10,7 +10,7 @@
   publish = "build/"
 
   # Default build command.
-  command = "npm run-script build"
+  command = "npm run build"
 
   # Directory with the serverless Lambda functions to deploy to AWS.
   functions = "functions/"

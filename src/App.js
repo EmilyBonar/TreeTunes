@@ -1,70 +1,86 @@
-import React from "react";
-import Tree from "./Tree";
 import "./App.css";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Chart from "./Chart.js";
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			playlistEntered: false,
-			tree: null,
-		};
-	}
-
-	async getPlaylist(e) {
-		e.preventDefault();
-		const url = document.querySelector(".playlist-input").value.split("/");
-		const id = url[url.indexOf("playlist") + 1].split("?")[0];
-		fetch(
-			`https://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
-		)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				//console.log(data); // --> this correctly returns an array
-				const newTree = (
-					<Tree playlist={data.playlist} features={data.features} />
-				);
-				this.setState({ tree: newTree });
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}
-
-	render() {
-		if (this.state.playlistEntered) {
-			return (
-				<>
-					<a href={`${window.location.href}`} className="home">
-						{" "}
-					</a>
-					<div className="App">{this.state.tree}</div>
-				</>
-			);
-		} else {
-			return (
-				<div className="App">
-					<form className="playlist-form">
-						<input
-							className="playlist-input"
-							placeholder="Enter a Spotify playlist URL"
-						></input>
-						<button
-							className="playlist-submit"
-							onClick={(e) => {
-								this.getPlaylist(e);
-								this.setState({ playlistEntered: true });
-							}}
-						>
-							Enter
-						</button>
-					</form>
-				</div>
-			);
-		}
-	}
+export default function App() {
+	return (
+		<Router>
+			{/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+			<Switch>
+				<Route path="/results/:url">
+					<Results />
+				</Route>
+				<Route path="/">
+					<Home />
+				</Route>
+			</Switch>
+		</Router>
+	);
 }
 
-export default App;
+function Home() {
+	const [url, setUrl] = useState("");
+	return (
+		<div className="flex fixed top-1/2 w-full flex-wrap justify-center">
+			<input
+				className="flex-grow rounded m-2 p-4 text-2xl"
+				placeholder="Enter a Spotify playlist URL"
+				onInput={(e) => setUrl(e.target.value.split("/"))}
+			></input>
+			<Link to={`/results/${url}`} className="bg-white m-2 p-4 text-xl rounded">
+				Results
+			</Link>
+		</div>
+	);
+}
+
+function Results() {
+	const [playlist, setPlaylist] = useState([]);
+	let { url } = useParams();
+	useEffect(() => {
+		getPlaylist(url).then((data) => {
+			let playlist = [];
+			for (let i = 0; i < data.playlist.length; i++) {
+				playlist.push({
+					track: data.playlist[i].track,
+					features: data.features[i],
+				});
+			}
+			setPlaylist(playlist);
+		});
+	}, [url]);
+	return (
+		<>
+			<Link to="/" className="p-2">
+				←Try another playlist
+			</Link>
+			<Chart playlist={playlist} />
+		</>
+	);
+}
+
+async function getPlaylist(url) {
+	url = url.split(",");
+	const id = url[url.indexOf("playlist") + 1].split("?")[0];
+	let result = await fetch(
+		`https://tunes.emilybonar.com/.netlify/functions/getSpotifyData?id=${id}`,
+	)
+		.then((response) => {
+			return response.json();
+		})
+		.then((data) => {
+			return data;
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+	return await result;
+}

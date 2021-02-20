@@ -1,4 +1,3 @@
-//import querystring from "querystring";
 var fetch = require("node-fetch");
 var SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
